@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonfils Consultants — Affaires Publiques & Conseil Stratégique</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0e1c2f;--navy2:#162540;--gold:#b8973a;--gold-light:#d4af5a;--cream:#f8f5f0;--white:#ffffff;--gray:#6b7280;--light:#e8e2d8;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--navy);cursor:none;}
+.cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.15s ease;transform:translate(-50%,-50%);}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(184,151,58,0.4);border-radius:50%;pointer-events:none;z-index:9998;transition:transform 0.08s ease,width 0.2s,height 0.2s;transform:translate(-50%,-50%);}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5vw;background:rgba(14,28,47,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,151,58,0.15);}
+.logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:500;color:var(--cream);letter-spacing:0.02em;}
+.logo span{color:var(--gold);}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center;}
+.nav-links a{text-decoration:none;color:rgba(248,245,240,0.6);font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:transparent !important;border:1px solid var(--gold);color:var(--gold) !important;padding:0.55rem 1.4rem;border-radius:2px;transition:background 0.2s,color 0.2s !important;}
+.nav-cta:hover{background:var(--gold) !important;color:var(--navy) !important;}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--navy);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+.hero-bg-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(184,151,58,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(184,151,58,0.04) 1px,transparent 1px);background-size:60px 60px;}
+.hero-glow{position:absolute;top:-200px;right:0;width:600px;height:600px;background:radial-gradient(circle,rgba(184,151,58,0.08) 0%,transparent 70%);pointer-events:none;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:10rem 5vw 6rem;z-index:2;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:0.8rem;font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;}
+.eyebrow-line{width:40px;height:1px;background:var(--gold);}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,5.5vw,5rem);font-weight:400;line-height:1.08;color:var(--cream);margin-bottom:1.8rem;}
+.hero-title em{color:var(--gold);font-style:italic;}
+.hero-sub{font-size:1rem;line-height:1.75;font-weight:300;color:rgba(248,245,240,0.5);max-width:480px;margin-bottom:3rem;}
+.hero-actions{display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap;}
+.btn-gold{background:var(--gold);color:var(--navy);padding:0.9rem 2.2rem;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;border-radius:2px;text-decoration:none;display:inline-block;transition:background 0.2s,transform 0.15s;}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);}
+.btn-outline{color:rgba(248,245,240,0.55);font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(184,151,58,0.35);padding-bottom:3px;transition:color 0.2s,border-color 0.2s;}
+.btn-outline:hover{color:var(--gold);border-color:var(--gold);}
+.hero-right{display:flex;align-items:center;justify-content:center;padding:8rem 5vw 6rem;z-index:2;}
+.hcard{background:rgba(248,245,240,0.04);border:1px solid rgba(184,151,58,0.12);border-radius:6px;padding:2.5rem;width:100%;max-width:400px;}
+.hcard-label{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
+.hcard-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:400;color:var(--cream);line-height:1;margin-bottom:0.4rem;}
+.hcard-unit{font-size:0.85rem;color:rgba(248,245,240,0.4);font-weight:300;}
+.hcard-desc{font-size:0.82rem;line-height:1.65;color:rgba(248,245,240,0.4);margin-top:1rem;font-weight:300;}
+.hcard-divider{height:1px;background:rgba(184,151,58,0.15);margin:1.5rem 0;}
+.hcard-items{display:flex;gap:1.5rem;}
+.hcard-item .n{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold);}
+.hcard-item .l{font-size:0.72rem;color:rgba(248,245,240,0.35);letter-spacing:0.08em;}
+
+/* SERVICES */
+.services{padding:8rem 5vw;background:var(--white);}
+.services-header{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:5rem;}
+.section-eyebrow{font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:block;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:400;line-height:1.15;color:var(--navy);}
+.section-title em{color:var(--gold);font-style:italic;}
+.section-title.light{color:var(--cream);}
+.services-intro{font-size:0.92rem;line-height:1.8;font-weight:300;color:var(--gray);align-self:end;}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
+.scard{padding:3rem 2.5rem;background:var(--cream);position:relative;overflow:hidden;transition:background 0.35s;cursor:default;}
+.scard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transform-origin:bottom;transition:transform 0.35s;}
+.scard:hover{background:var(--navy);}
+.scard:hover::before{transform:scaleY(1);}
+.scard:hover .scard-num{color:rgba(184,151,58,0.08);}
+.scard:hover .scard-title{color:var(--cream);}
+.scard:hover .scard-text{color:rgba(248,245,240,0.45);}
+.scard:hover .stag{border-color:rgba(184,151,58,0.3);color:rgba(184,151,58,0.6);}
+.scard-num{font-family:'Playfair Display',serif;font-size:4rem;font-weight:400;color:rgba(14,28,47,0.06);line-height:1;margin-bottom:1.5rem;transition:color 0.35s;}
+.scard-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;color:var(--navy);margin-bottom:0.9rem;transition:color 0.35s;}
+.scard-text{font-size:0.85rem;line-height:1.7;font-weight:300;color:var(--gray);margin-bottom:1.5rem;transition:color 0.35s;}
+.scard-tags{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.stag{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid var(--gold);color:var(--gold);border-radius:2px;transition:border-color 0.35s,color 0.35s;}
+
+/* ABOUT */
+.about{padding:8rem 5vw;background:var(--navy);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;position:relative;overflow:hidden;}
+.about-bg{position:absolute;right:0;top:0;bottom:0;width:50%;opacity:0.03;background:repeating-linear-gradient(45deg,var(--gold),var(--gold) 1px,transparent 1px,transparent 20px);}
+.about-img-frame{background:rgba(184,151,58,0.06);border:1px solid rgba(184,151,58,0.15);border-radius:4px;padding:3rem 2.5rem;position:relative;z-index:1;}
+.about-quote{font-family:'Playfair Display',serif;font-size:1.4rem;font-style:italic;font-weight:400;color:var(--cream);line-height:1.5;margin-bottom:1.5rem;}
+.about-quote-attr{font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);}
+.about-values{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2rem;}
+.aval{padding:1.2rem;border:1px solid rgba(184,151,58,0.1);border-radius:3px;}
+.aval-title{font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+.aval-text{font-size:0.8rem;line-height:1.55;color:rgba(248,245,240,0.35);font-weight:300;}
+.about-content{z-index:1;}
+.about-text{font-size:0.92rem;line-height:1.8;font-weight:300;color:rgba(248,245,240,0.5);margin-top:1.5rem;margin-bottom:2.5rem;}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2.5rem;}
+.astat-num{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--gold);line-height:1;}
+.astat-label{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(248,245,240,0.3);margin-top:0.3rem;}
+
+/* REFERENCES */
+.references{padding:8rem 5vw;background:var(--cream);}
+.ref-header{text-align:center;margin-bottom:4rem;}
+.ref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+.rcard{background:var(--white);padding:2rem;border-radius:4px;border:1px solid var(--light);transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;}
+.rcard:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 20px 50px rgba(14,28,47,0.08);}
+.rcard-sector{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+.rcard-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:500;color:var(--navy);margin-bottom:0.6rem;}
+.rcard-desc{font-size:0.82rem;line-height:1.6;color:var(--gray);font-weight:300;}
+
+/* FORMATION */
+.formation{padding:8rem 5vw;background:var(--white);}
+.formation-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start;margin-top:4rem;}
+.form-list{display:flex;flex-direction:column;gap:1.5rem;}
+.form-item{padding:2rem;border-left:2px solid var(--light);transition:border-color 0.3s;}
+.form-item:hover{border-color:var(--gold);}
+.form-item-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy);margin-bottom:0.6rem;}
+.form-item-desc{font-size:0.83rem;line-height:1.65;color:var(--gray);font-weight:300;}
+.form-aside{background:var(--navy);padding:3rem;border-radius:6px;position:sticky;top:100px;}
+.form-aside-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--cream);margin-bottom:1.2rem;}
+.form-aside-text{font-size:0.85rem;line-height:1.7;color:rgba(248,245,240,0.45);font-weight:300;margin-bottom:2rem;}
+.form-feature{display:flex;gap:1rem;margin-bottom:1.2rem;align-items:flex-start;}
+.form-feature-dash{color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:2px;}.form-feature-icon{width:34px;height:34px;border-radius:50%;background:rgba(184,151,58,0.15);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.9rem;}
+.form-feature-text{font-size:0.82rem;line-height:1.55;color:rgba(248,245,240,0.45);font-weight:300;}
+
+
+
+/* CONTACT */
+.cinfo-bullet{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px;}.contact{padding:8rem 5vw;background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.contact-title{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:400;color:var(--navy);margin-bottom:1.2rem;}
+.contact-text{font-size:0.9rem;line-height:1.8;color:var(--gray);font-weight:300;margin-bottom:2.5rem;}
+.contact-info{display:flex;flex-direction:column;gap:1.2rem;}
+.cinfo-item{display:flex;align-items:center;gap:1rem;}
+.cinfo-icon{width:38px;height:38px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.cinfo-label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);}
+.cinfo-value{font-size:0.88rem;color:var(--navy);font-weight:400;}
+.contact-form{display:flex;flex-direction:column;gap:1.2rem;}
+.form-group{display:flex;flex-direction:column;gap:0.4rem;}
+.form-label{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);}
+.form-input,.form-textarea{background:var(--white);border:1px solid var(--light);border-radius:3px;padding:0.8rem 1rem;color:var(--navy);font-family:'Jost',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s;font-weight:300;}
+.form-input:focus,.form-textarea:focus{border-color:var(--gold);}
+.form-textarea{resize:vertical;min-height:120px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+
+/* FOOTER */
+footer{background:var(--navy);padding:5rem 5vw 2.5rem;}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(184,151,58,0.1);margin-bottom:2rem;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;color:var(--cream);margin-bottom:0.8rem;}
+.footer-brand span{color:var(--gold);}
+.footer-tagline{font-size:0.78rem;color:rgba(248,245,240,0.3);font-weight:300;line-height:1.6;max-width:260px;}
+.footer-col h4{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:0.6rem;}
+.footer-col ul a{text-decoration:none;color:rgba(248,245,240,0.35);font-size:0.83rem;font-weight:300;transition:color 0.2s;}
+.footer-col ul a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;color:rgba(248,245,240,0.25);}
+.footer-legal{display:flex;gap:1.5rem;}
+.footer-legal a{color:rgba(248,245,240,0.25);text-decoration:none;transition:color 0.2s;}
+.footer-legal a:hover{color:var(--gold);}
+
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:900px){
+  .hero,.about,.contact,.formation-grid{grid-template-columns:1fr;}
+  .services-grid,.ref-grid,.services-header,.footer-top{grid-template-columns:1fr;}
+  nav{padding:1rem 4vw;}
+  .nav-links{display:none;}
+  .hero-left,.hero-right{padding:6rem 5vw 4rem;}
+  body{cursor:auto;}
+  .cursor,.cursor-ring{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <div class="logo">Bonfils<span>.</span>Consultants</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">Présentation</a></li>
+    <li><a href="#references">Références</a></li>
+    <li><a href="#formation">Formation</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow"><span class="eyebrow-line"></span>Cabinet de conseil stratégique — Paris</div>
+    <h1 class="hero-title">L'influence<br>au service de<br>vos <em>ambitions</em></h1>
+    <p class="hero-sub">Bonfils Consultants accompagne les organisations dans leurs relations avec les institutions publiques, leur stratégie de communication et leur veille stratégique depuis 2008.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-gold">Prendre contact</a>
+      <a href="#services" class="btn-outline">Nos services →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hcard">
+      <div class="hcard-label">Expérience cumulée</div>
+      <div class="hcard-num">16+</div>
+      <div class="hcard-unit">années d'expertise institutionnelle</div>
+      <div class="hcard-desc">Un réseau solide d'élus, de hauts fonctionnaires et de décideurs institutionnels au service de vos dossiers.</div>
+      <div class="hcard-divider"></div>
+      <div class="hcard-items">
+        <div class="hcard-item"><div class="n">4</div><div class="l">Expertises</div></div>
+        <div class="hcard-item"><div class="n">100+</div><div class="l">Missions</div></div>
+        <div class="hcard-item"><div class="n">★</div><div class="l">Indépendant</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header fade-up">
+    <div>
+      <span class="section-eyebrow">— Nos expertises</span>
+      <h2 class="section-title">Quatre piliers<br>d'<em>excellence</em></h2>
+    </div>
+    <p class="services-intro">Notre cabinet vous accompagne sur l'ensemble du spectre du conseil : affaires publiques, veille stratégique, communication institutionnelle et formation de vos équipes.</p>
+  </div>
+  <div class="services-grid fade-up">
+    <div class="scard">
+      <div class="scard-num">01</div>
+      <h3 class="scard-title">Affaires Publiques</h3>
+      <p class="scard-text">Nous représentons vos intérêts auprès des décideurs publics et institutionnels. Stratégie de lobbying, cartographie des parties prenantes, gestion de dossiers législatifs et réglementaires au niveau national et européen.</p>
+      <div class="scard-tags"><span class="stag">Lobbying</span><span class="stag">Institutions</span><span class="stag">Régulation</span></div>
+    </div>
+    <div class="scard">
+      <div class="scard-num">02</div>
+      <h3 class="scard-title">Veille Stratégique</h3>
+      <p class="scard-text">Dispositifs de veille législative, réglementaire et politique sur mesure. Anticipez les évolutions de votre environnement et prenez les bonnes décisions au bon moment grâce à une information fiable et contextualisée.</p>
+      <div class="scard-tags"><span class="stag">Veille législative</span><span class="stag">Intelligence</span><span class="stag">Analyse</span></div>
+    </div>
+    <div class="scard">
+      <div class="scard-num">03</div>
+      <h3 class="scard-title">Communication</h3>
+      <p class="scard-text">Élaboration de messages, relation médias, communication institutionnelle et gestion de crise. Faites entendre votre voix avec clarté et impact dans l'espace public et auprès de vos parties prenantes clés.</p>
+      <div class="scard-tags"><span class="stag">Relations presse</span><span class="stag">Crise</span><span class="stag">Institutionnel</span></div>
+    </div>
+    <div class="scard">
+      <div class="scard-num">04</div>
+      <h3 class="scard-title">Formation</h3>
+      <p class="scard-text">Programmes sur mesure pour maîtriser les rouages institutionnels, les techniques de plaidoyer et la communication publique. Formats intra ou inter-entreprises, adaptés à tous niveaux.</p>
+      <div class="scard-tags"><span class="stag">Sur-mesure</span><span class="stag">Plaidoyer</span><span class="stag">Intra/Inter</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-bg"></div>
+
+  <!-- Présentation Sébastien Bonfils -->
+  <div class="about-img-frame fade-up" style="display:flex;flex-direction:column;gap:2rem;">
+    <div style="display:flex;gap:2.5rem;align-items:flex-start;">
+      <div style="flex-shrink:0;">
+        <div style="width:160px;height:200px;background:rgba(184,151,58,0.08);border:1px solid rgba(184,151,58,0.2);border-radius:3px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+          <div style="text-align:center;padding:1rem;">
+            <div style="font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--gold);line-height:1;">SB</div>
+            <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(248,245,240,0.3);margin-top:0.5rem;">Fondateur</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">Fondateur & Dirigeant</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:400;color:var(--cream);margin-bottom:0.3rem;">Sébastien <em style="color:var(--gold);font-style:italic;">Bonfils</em></h3>
+        <div style="font-size:0.78rem;color:rgba(248,245,240,0.35);font-weight:300;margin-bottom:1.2rem;">Master 2 Administration des Collectivités territoriales — Université de Nice Sophia-Antipolis</div>
+        <p style="font-size:0.85rem;line-height:1.75;color:rgba(248,245,240,0.5);font-weight:300;">Diplômé en 2007, Sébastien Bonfils travaille dès 2004 pour un député à Nice en tant qu'assistant parlementaire, participant à plusieurs campagnes électorales. En juillet 2007, il devient collaborateur parlementaire d'un Sénateur à Paris et dirige la campagne de plusieurs candidats aux élections municipales, législatives et européennes.</p>
+      </div>
+    </div>
+    <p style="font-size:0.85rem;line-height:1.75;color:rgba(248,245,240,0.5);font-weight:300;">De 2008 à 2011, il est rédacteur en chef d'une infolettre d'un parti politique gouvernemental. En juin 2008, il crée son entreprise de consulting.</p>
+    <div style="border-top:1px solid rgba(184,151,58,0.15);padding-top:1.5rem;">
+      <p style="font-size:0.92rem;line-height:1.7;color:var(--cream);font-weight:400;font-family:'Playfair Display',serif;font-style:italic;">« Après 10 années passées dans les arcanes parlementaires et gouvernementales, il dirige le cabinet Bonfils Consultants, spécialisé dans les affaires publiques et la communication d'influence. »</p>
+    </div>
+    <div class="about-values">
+      <div class="aval"><div class="aval-title">Indépendance</div><div class="aval-text">Conseil libre de tout conflit d'intérêt</div></div>
+      <div class="aval"><div class="aval-title">Réseau</div><div class="aval-text">Ancrage au cœur des institutions</div></div>
+      <div class="aval"><div class="aval-title">Discrétion</div><div class="aval-text">Confidentialité absolue garantie</div></div>
+      <div class="aval"><div class="aval-title">Résultats</div><div class="aval-text">Engagements mesurables et concrets</div></div>
+    </div>
+  </div>
+
+  <div class="about-content fade-up">
+    <span class="section-eyebrow" style="color:var(--gold);">— Qui sommes-nous</span>
+    <h2 class="section-title light">Un cabinet<br>au <em>cœur</em> des<br>institutions</h2>
+    <p class="about-text">Fondé en 2008, Bonfils Consultants est un cabinet indépendant spécialisé dans les affaires publiques et le conseil institutionnel. Fort d'un ancrage profond dans les milieux parlementaires et gouvernementaux, le cabinet offre un accompagnement sur mesure à chaque client.</p>
+    <div class="about-stats">
+      <div><div class="astat-num">2004</div><div class="astat-label">Début de carrière</div></div>
+      <div><div class="astat-num">2008</div><div class="astat-label">Création du cabinet</div></div>
+      <div><div class="astat-num">100%</div><div class="astat-label">Indépendant</div></div>
+    </div>
+    <a href="#contact" class="btn-gold">Nous rencontrer</a>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="references" id="references">
+  <div class="ref-header fade-up">
+    <span class="section-eyebrow">— Ils nous font confiance</span>
+    <h2 class="section-title">Nos <em>références</em></h2>
+  </div>
+  <div class="ref-grid fade-up">
+    <div class="rcard"><div class="rcard-sector">Énergie & Environnement</div><div class="rcard-name">Stratégie réglementaire</div><p class="rcard-desc">Accompagnement d'un acteur majeur de l'énergie dans la défense de ses positions face aux évolutions législatives européennes et nationales.</p></div>
+    <div class="rcard"><div class="rcard-sector">Numérique & Innovation</div><div class="rcard-name">Plaidoyer institutionnel</div><p class="rcard-desc">Mise en place d'une stratégie d'influence pour une association professionnelle du secteur numérique auprès des ministères concernés.</p></div>
+    <div class="rcard"><div class="rcard-sector">Collectivités territoriales</div><div class="rcard-name">Communication publique</div><p class="rcard-desc">Conseil en communication institutionnelle pour une collectivité territoriale en phase de repositionnement stratégique majeur.</p></div>
+    <div class="rcard"><div class="rcard-sector">Santé</div><div class="rcard-name">Veille & Analyse</div><p class="rcard-desc">Dispositif de veille parlementaire pour un établissement de santé privé sur l'ensemble des réformes du secteur hospitalier.</p></div>
+    <div class="rcard"><div class="rcard-sector">Associations & ONG</div><div class="rcard-name">Formation équipes</div><p class="rcard-desc">Programme de formation aux techniques de plaidoyer pour les équipes de plusieurs organisations de la société civile française.</p></div>
+    <div class="rcard"><div class="rcard-sector">Entreprises publiques</div><div class="rcard-name">Gestion de crise</div><p class="rcard-desc">Accompagnement en communication de crise et relations institutionnelles lors d'une période sensible pour un opérateur national.</p></div>
+  </div>
+</section>
+
+<!-- FORMATION -->
+<section class="formation" id="formation">
+  <span class="section-eyebrow fade-up">— Renforcer vos équipes</span>
+  <h2 class="section-title fade-up">Nos programmes<br>de <em>formation</em></h2>
+  <div class="formation-grid">
+    <div class="form-list fade-up">
+      <div class="form-item">
+        <h3 class="form-item-title">Maîtriser les institutions françaises et européennes</h3>
+        <p class="form-item-desc">Comprendre le fonctionnement du Parlement, du Gouvernement, des autorités de régulation et des institutions européennes. Indispensable pour tout acteur en interaction avec la puissance publique.</p>
+      </div>
+      <div class="form-item">
+        <h3 class="form-item-title">Techniques de plaidoyer et lobbying éthique</h3>
+        <p class="form-item-desc">Construire un argumentaire solide, identifier les bons interlocuteurs, organiser des rencontres efficaces. Sessions pratiques avec mises en situation réelles.</p>
+      </div>
+      <div class="form-item">
+        <h3 class="form-item-title">Communication institutionnelle et prise de parole</h3>
+        <p class="form-item-desc">Maîtriser les codes de la communication publique, préparer ses interventions devant des décideurs, gérer les situations médiatiques complexes avec assurance.</p>
+      </div>
+      <div class="form-item">
+        <h3 class="form-item-title">Veille stratégique appliquée</h3>
+        <p class="form-item-desc">Construire et piloter un dispositif de veille législative et réglementaire efficient. Outils, méthodes et indicateurs de suivi pour ne rien manquer d'important.</p>
+      </div>
+    </div>
+    <div class="form-aside fade-up">
+      <h3 class="form-aside-title">Des formations sur mesure</h3>
+      <p class="form-aside-text">Chaque programme est adapté à votre secteur, vos enjeux et le niveau de vos équipes. Formats intra-entreprise, inter-entreprises ou parcours individuels.</p>
+      <div class="form-feature"><div class="form-feature-icon">—</div><p class="form-feature-text">Contenus personnalisés selon votre secteur d'activité et vos objectifs spécifiques</p></div>
+      <div class="form-feature"><div class="form-feature-icon">—</div><p class="form-feature-text">Formats courts (½ journée) ou longs (2 à 3 jours) selon vos contraintes</p></div>
+      <div class="form-feature"><div class="form-feature-dash">—</div><p class="form-feature-text">Formateurs issus du monde institutionnel avec expérience terrain réelle</p></div>
+      <br>
+      <a href="#contact" class="btn-gold" style="display:inline-block;width:100%;text-align:center;">Demander un programme</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="fade-up">
+    <span class="section-eyebrow">— Parlons de votre projet</span>
+    <h2 class="contact-title">Prenons<br><em>contact</em></h2>
+    <p class="contact-text">Chaque mission commence par une conversation. Décrivez-nous votre situation et nous vous répondrons sous 24 heures ouvrées.</p>
+    <div class="contact-info">
+      <div class="cinfo-item"><div class="cinfo-bullet"></div><div><div class="cinfo-label">Adresse</div><div class="cinfo-value">Paris, France</div></div></div>
+      <div class="cinfo-item"><div class="cinfo-bullet"></div><div><div class="cinfo-label">Email</div><div class="cinfo-value">contact@bonfilsconsultants.fr</div></div></div>
+      <div class="cinfo-item"><div class="cinfo-bullet"></div><div><div class="cinfo-label">Site web</div><div class="cinfo-value">www.bonfilsconsultants.fr</div></div></div>
+    </div>
+  </div>
+  <div class="fade-up">
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Prénom</label><input class="form-input" type="text" placeholder="Jean"></div>
+        <div class="form-group"><label class="form-label">Nom</label><input class="form-input" type="text" placeholder="Dupont"></div>
+      </div>
+      <div class="form-group"><label class="form-label">Organisation</label><input class="form-input" type="text" placeholder="Votre entreprise ou organisation"></div>
+      <div class="form-group"><label class="form-label">Email professionnel</label><input class="form-input" type="email" placeholder="jean.dupont@organisation.fr"></div>
+      <div class="form-group"><label class="form-label">Votre besoin</label><textarea class="form-textarea" placeholder="Décrivez brièvement votre situation et ce que vous recherchez…"></textarea></div>
+      <button class="btn-gold" style="width:100%;padding:1rem;font-size:0.82rem;">Envoyer ma demande →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Bonfils<span>.</span>Consultants</div>
+      <p class="footer-tagline">Cabinet indépendant de conseil en affaires publiques, veille stratégique et communication institutionnelle — Paris, depuis 2008.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Affaires publiques</a></li>
+        <li><a href="#services">Veille stratégique</a></li>
+        <li><a href="#services">Communication</a></li>
+        <li><a href="#formation">Formation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Cabinet</h4>
+      <ul>
+        <li><a href="#about">Présentation</a></li>
+        <li><a href="#references">Références</a></li>
+            <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Légal</h4>
+      <ul>
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">Confidentialité</a></li>
+        <li><a href="#">CGV</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2008–2025 Bonfils Consultants — Tous droits réservés</span>
+    <div class="footer-legal">
+      <a href="#">Mentions légales</a>
+      <a href="#">Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Cursor
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.scard,.rcard,.form-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2)';ring.style.width='60px';ring.style.height='60px';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.width='36px';ring.style.height='36px';});
+});
+
+// Scroll animations
+const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible');}),{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+</script>
+</body>
+</html>
